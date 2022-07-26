@@ -17,7 +17,7 @@
         <div class="column no-wrap flex-center">
           <div class="text-h3 text-weight-light">Faça o seu cadastro</div>
           <q-btn text-color="secondary" class="text-capitalize q-mt-xl"
-            >Sign Up</q-btn
+            >Cadastrar</q-btn
           >
         </div>
       </q-carousel-slide>
@@ -25,7 +25,7 @@
         <div class="column no-wrap flex-center">
           <div class="text-h3 text-weight-light">Agende sua consulta.</div>
           <q-btn color="secondary" class="text-capitalize q-mt-xl"
-            >Log In</q-btn
+            >Entrar</q-btn
           >
         </div>
       </q-carousel-slide>

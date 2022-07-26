@@ -9,7 +9,7 @@
               class="text-capitalize"
               color="secondary"
               text-color="white"
-              label="Log In"
+              label="Entrar"
             />
           </q-route-tab>
           <q-route-tab to="/some/other/route">
@@ -17,7 +17,7 @@
               class="text-capitalize"
               color="white"
               text-color="secondary"
-              label="Sign Up"
+              label="Cadastrar"
             />
           </q-route-tab>
         </q-tabs>
