@@ -16,7 +16,10 @@
       <q-carousel-slide name="first">
         <div class="column no-wrap flex-center">
           <div class="text-h3 text-weight-light">Faça o seu cadastro</div>
-          <q-btn text-color="secondary" class="text-capitalize q-mt-xl"
+          <q-btn
+            text-color="secondary"
+            class="text-capitalize q-mt-xl"
+            to="/auth/signUp"
             >Cadastrar</q-btn
           >
         </div>
@@ -24,7 +27,10 @@
       <q-carousel-slide name="second">
         <div class="column no-wrap flex-center">
           <div class="text-h3 text-weight-light">Agende sua consulta.</div>
-          <q-btn color="secondary" class="text-capitalize q-mt-xl"
+          <q-btn
+            color="secondary"
+            class="text-capitalize q-mt-xl"
+            to="/auth/login"
             >Entrar</q-btn
           >
         </div>
