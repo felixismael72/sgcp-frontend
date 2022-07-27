@@ -38,7 +38,10 @@
       <q-carousel-slide name="third">
         <div class="column no-wrap flex-center">
           <div class="text-h3 text-weight-light">Leia sobre saúde mental</div>
-          <q-btn text-color="secondary" class="text-capitalize q-mt-xl"
+          <q-btn
+            text-color="secondary"
+            class="text-capitalize q-mt-xl"
+            to="/posts"
             >Publicações</q-btn
           >
         </div>
