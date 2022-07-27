@@ -7,7 +7,10 @@ import {
 } from 'vuex';
 
 import post from './Post';
+import path from './Path';
+
 import { PostStateInterface } from './Post/state';
+import { PathStateInterface } from './Path/state';
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
 
@@ -25,6 +28,7 @@ export interface StateInterface {
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   post: PostStateInterface;
+  path: PathStateInterface;
 }
 
 // provide typings for `this.$store`
@@ -42,6 +46,7 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore<StateInterface>({
     modules: {
       post,
+      path,
     },
 
     // enable strict mode (adds overhead!)

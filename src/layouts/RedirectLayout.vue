@@ -13,6 +13,10 @@
           label="Início"
         />
       </q-toolbar>
+
+      <q-toolbar inset>
+        <Breadcrumb />
+      </q-toolbar>
     </q-header>
 
     <q-page-container>
@@ -23,9 +27,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import Breadcrumb from 'components/Global/Breadcrumb.vue';
+
 export default defineComponent({
   name: 'AuthenticationLayout',
-
+  components: { Breadcrumb },
   setup() {
     const leftDrawer = ref(false);
     return { leftDrawer };
