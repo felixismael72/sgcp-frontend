@@ -5,8 +5,8 @@
         <q-item-section avatar>
           <q-avatar
             icon="feed"
-            :color="index % 2 == 0 ? 'white' : 'secondary'"
-            :text-color="index % 2 == 0 ? 'secondary' : 'white'"
+            :color="index % 2 == 0 ? 'secondary' : 'white'"
+            :text-color="index % 2 == 0 ? 'white' : 'secondary'"
             class="shadow-3"
           />
         </q-item-section>
