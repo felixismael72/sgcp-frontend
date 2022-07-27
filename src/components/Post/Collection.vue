@@ -1,115 +1,26 @@
 <template>
-  <div class="q-pa-md" style="max-width: 350px">
+  <div class="q-pa-md" style="max-width: 750px">
     <q-list bordered separator>
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple v-for="(post, index) in posts" :key="post._id">
         <q-item-section avatar>
           <q-avatar
             icon="feed"
-            color="secondary"
-            text-color="white"
+            :color="index % 2 == 0 ? 'white' : 'secondary'"
+            :text-color="index % 2 == 0 ? 'secondary' : 'white'"
             class="shadow-3"
           />
         </q-item-section>
 
         <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular"
-            >Título da publicação 1</q-item-label
-          >
-          <q-item-label caption>Autor</q-item-label>
-          <q-item-label caption>12/07/2022</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item clickable v-ripple>
-        <q-item-section avatar>
-          <q-avatar
-            icon="feed"
-            color="white"
-            text-color="secondary"
-            class="shadow-3"
-          />
+          <q-item-label class="text-h6 text-weight-regular">{{
+            post.title
+          }}</q-item-label>
+          <q-item-label caption>{{ post.author }}</q-item-label>
+          <q-item-label caption>{{ post.created_at }}</q-item-label>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular"
-            >Título da publicação 2</q-item-label
-          >
-          <q-item-label caption>Autor</q-item-label>
-          <q-item-label caption>12/07/2022</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item clickable v-ripple>
-        <q-item-section avatar>
-          <q-avatar
-            icon="feed"
-            color="secondary"
-            text-color="white"
-            class="shadow-3"
-          />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular"
-            >Título da publicação 3</q-item-label
-          >
-          <q-item-label caption>Autor</q-item-label>
-          <q-item-label caption>12/07/2022</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item clickable v-ripple>
-        <q-item-section avatar>
-          <q-avatar
-            icon="feed"
-            color="white"
-            text-color="secondary"
-            class="shadow-3"
-          />
-        </q-item-section>
-
-        <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular"
-            >Título da publicação 4</q-item-label
-          >
-          <q-item-label caption>Autor</q-item-label>
-          <q-item-label caption>12/07/2022</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item clickable v-ripple>
-        <q-item-section avatar>
-          <q-avatar
-            icon="feed"
-            color="secondary"
-            text-color="white"
-            class="shadow-3"
-          />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular"
-            >Título da publicação 5</q-item-label
-          >
-          <q-item-label caption>Autor</q-item-label>
-          <q-item-label caption>12/07/2022</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item clickable v-ripple>
-        <q-item-section avatar>
-          <q-avatar
-            icon="feed"
-            color="white"
-            text-color="secondary"
-            class="shadow-3"
-          />
-        </q-item-section>
-
-        <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular"
-            >Título da publicação 6</q-item-label
-          >
-          <q-item-label caption>Autor</q-item-label>
-          <q-item-label caption>12/07/2022</q-item-label>
+          <q-item-label :lines="1">{{ post.body }}</q-item-label>
         </q-item-section>
       </q-item>
     </q-list>
@@ -117,8 +28,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'src/store';
 export default defineComponent({
   name: 'CollectionComponent',
+  setup() {
+    const $store = useStore();
+
+    const posts = computed({
+      get: () => $store.state.post.posts,
+      set: () => {
+        return;
+      },
+    });
+
+    return {
+      posts,
+    };
+  },
 });
 </script>
