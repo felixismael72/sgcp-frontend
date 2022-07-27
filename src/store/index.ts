@@ -8,9 +8,11 @@ import {
 
 import post from './Post';
 import path from './Path';
+import user from './User';
 
 import { PostStateInterface } from './Post/state';
 import { PathStateInterface } from './Path/state';
+import { UserStateInterface } from './User/state';
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
 
@@ -29,6 +31,7 @@ export interface StateInterface {
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   post: PostStateInterface;
   path: PathStateInterface;
+  user: UserStateInterface;
 }
 
 // provide typings for `this.$store`
@@ -47,6 +50,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       post,
       path,
+      user,
     },
 
     // enable strict mode (adds overhead!)

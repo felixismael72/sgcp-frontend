@@ -5,6 +5,10 @@
         <q-icon name="psychologist" />
         <q-toolbar-title> Psicologar </q-toolbar-title>
       </q-toolbar>
+
+      <q-toolbar inset>
+        <Breadcrumb />
+      </q-toolbar>
     </q-header>
 
     <q-page-container>
@@ -15,9 +19,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-export default defineComponent({
-  // name: 'LayoutName',
+import Breadcrumb from 'components/Global/Breadcrumb.vue';
 
+export default defineComponent({
+  name: 'PsychologistLayout',
+  components: { Breadcrumb },
   setup() {
     const leftDrawer = ref(false);
     return { leftDrawer };

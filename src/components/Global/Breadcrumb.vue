@@ -6,7 +6,7 @@
     :key="index"
   >
     <q-breadcrumbs-el :label="path" :icon="icons[index]" />
-    <q-span class="q-mr-sm" v-if="index < paths.length - 1">/</q-span>
+    <span class="q-mr-sm" v-if="index < paths.length - 1">/</span>
   </q-breadcrumbs>
 </template>
 

@@ -14,7 +14,7 @@ export default defineComponent({
 
     const pathData = {
       paths: ['Início', 'Entrar'],
-      icons: ['home', 'account_circle'],
+      icons: ['home', 'login'],
     };
 
     $store.commit('path/setPath', pathData);

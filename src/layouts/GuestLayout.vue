@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh Lpr fFf">
     <q-header class="bg-teal">
-      <q-toolbar class="row">
+      <q-toolbar>
         <q-icon name="psychology" size="sm" />
         <q-toolbar-title> Psicologar </q-toolbar-title>
         <q-tabs>
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent } from 'vue';
 import Breadcrumb from 'components/Global/Breadcrumb.vue';
 
 export default defineComponent({

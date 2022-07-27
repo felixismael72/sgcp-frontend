@@ -20,6 +20,8 @@ export default defineComponent({
     };
 
     $store.commit('path/setPath', pathData);
+
+    $store.dispatch('post/fetchPosts');
   },
 });
 </script>

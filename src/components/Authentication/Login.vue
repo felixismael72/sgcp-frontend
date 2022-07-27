@@ -30,7 +30,10 @@
         </template>
       </q-input>
 
-      <div>
+      <div
+        v-ripple
+        class="relative-position container flex flex-center text-white"
+      >
         <q-btn label="Entrar" type="submit" color="secondary" />
         <q-btn
           label="Limpar"

@@ -16,7 +16,7 @@ export default defineComponent({
 
     const pathData = {
       paths: ['Início', 'Cadastrar'],
-      icons: ['home', 'account_circle'],
+      icons: ['home', 'app_registration'],
     };
 
     $store.commit('path/setPath', pathData);
