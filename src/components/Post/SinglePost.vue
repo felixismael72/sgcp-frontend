@@ -1,8 +1,10 @@
 <template>
-  <div class="text-h2">{{ openedPost.title }}</div>
-  <div class="text-subtitle">{{ openedPost.author }}</div>
-  <div>{{ openedPost.body }}</div>
-  <div>{{ openedPost.created_at }}</div>
+  <div>
+    <div class="text-h2">{{ openedPost.title }}</div>
+    <div class="text-subtitle q-mt-md">{{ openedPost.author }}</div>
+    <div class="q-mt-md">{{ openedPost.body }}</div>
+    <div class="q-mt-md">{{ openedPost.created_at }}</div>
+  </div>
 </template>
 
 <script lang="ts">

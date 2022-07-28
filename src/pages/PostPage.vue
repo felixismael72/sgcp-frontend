@@ -16,7 +16,7 @@ export default defineComponent({
 
     const pathData = {
       paths: ['Início', 'Publicações'],
-      icons: ['home', 'feed'],
+      icons: ['home', 'library_books'],
     };
 
     $store.commit('path/setPath', pathData);

@@ -19,6 +19,16 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/psychologist',
+    component: () => import('src/layouts/PsychologistLayout.vue'),
+    children: [
+      {
+        path: '/psychologist/console',
+        component: () => import('pages/PsychologistConsolePage.vue'),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

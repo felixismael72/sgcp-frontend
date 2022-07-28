@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-md" style="max-width: 400px">
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+    <q-form
+      @submit="logIn(email, password)"
+      @reset="onReset"
+      class="q-gutter-md"
+    >
       <q-input
         filled
         v-model="email"
@@ -48,14 +52,28 @@
 </template>
 
 <script lang="ts">
+import { useStore } from 'src/store';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'LoginComponent',
   setup() {
+    const $store = useStore();
+
+    const logIn = (email: string, password: string) => {
+      const userInfo = {
+        email: email,
+        password: password,
+      };
+
+      $store.commit('user/setUserLogin', userInfo);
+      $store.dispatch('user/logInUser');
+    };
+
     return {
       password: ref(''),
       isPwd: ref(true),
       email: ref(''),
+      logIn,
     };
   },
 });

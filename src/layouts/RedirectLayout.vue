@@ -8,7 +8,7 @@
           color="white"
           text-color="secondary"
           class="text-capitalize"
-          icon="arrow_back"
+          icon="home"
           to="/"
           label="Início"
         />
