@@ -13,6 +13,10 @@ const routes: RouteRecordRaw[] = [
       { path: '/auth/login', component: () => import('pages/LoginPage.vue') },
       { path: '/auth/signUp', component: () => import('pages/SignUpPage.vue') },
       { path: '/posts', component: () => import('pages/PostPage.vue') },
+      {
+        path: '/posts/openedPost',
+        component: () => import('pages/SinglePostPage.vue'),
+      },
     ],
   },
 

@@ -9,11 +9,13 @@ type Post = {
 
 export interface PostStateInterface {
   posts: Post[];
+  openedPost: Post;
 }
 
 function state(): PostStateInterface {
   return {
     posts: [],
+    openedPost: {} as Post,
   };
 }
 

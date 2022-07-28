@@ -9,6 +9,10 @@ const mutation: MutationTree<PostStateInterface> = {
   updatePosts(state: PostStateInterface, data) {
     state.posts = [...data];
   },
+
+  fillOpenedPost(state: PostStateInterface, data) {
+    state.openedPost = data;
+  },
 };
 
 export default mutation;

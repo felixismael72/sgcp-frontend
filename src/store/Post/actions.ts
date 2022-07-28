@@ -14,6 +14,16 @@ const actions: ActionTree<PostStateInterface, StateInterface> = {
         console.log(error);
       });
   },
+  fetchPostByID(context, id: string) {
+    api
+      .get(`/api/post/${id}`)
+      .then((response) => {
+        context.commit('fillOpenedPost', response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 
 export default actions;

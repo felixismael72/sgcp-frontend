@@ -1,7 +1,14 @@
 <template>
-  <div class="q-pa-md" style="max-width: 750px">
+  <div class="q-pa-md" style="max-width: 750px" v-if="posts.length > 0">
     <q-list bordered separator>
-      <q-item clickable v-ripple v-for="(post, index) in posts" :key="post._id">
+      <q-item
+        clickable
+        v-ripple
+        to="/posts/openedPost"
+        v-for="(post, index) in posts"
+        :key="post._id"
+        v-on:click="openPost(post._id)"
+      >
         <q-item-section avatar>
           <q-avatar
             icon="feed"
@@ -25,6 +32,14 @@
       </q-item>
     </q-list>
   </div>
+  <div class="q-pa-md" v-if="posts <= 0">
+    <q-banner class="bg-warning text-white">
+      Não há publicações ainda. Em breve, você poderá lê-las!
+      <template v-slot:action>
+        <q-btn flat color="white" label="Voltar para o início" to="/" />
+      </template>
+    </q-banner>
+  </div>
 </template>
 
 <script lang="ts">
@@ -42,8 +57,13 @@ export default defineComponent({
       },
     });
 
+    const openPost = (postID: string) => {
+      $store.dispatch('post/fetchPostByID', postID);
+    };
+
     return {
       posts,
+      openPost,
     };
   },
 });
