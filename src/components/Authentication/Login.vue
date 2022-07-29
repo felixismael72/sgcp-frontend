@@ -54,10 +54,12 @@
 <script lang="ts">
 import { useStore } from 'src/store';
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'LoginComponent',
   setup() {
     const $store = useStore();
+    const $router = useRouter();
 
     const logIn = (email: string, password: string) => {
       const userInfo = {
@@ -66,7 +68,11 @@ export default defineComponent({
       };
 
       $store.commit('user/setUserLogin', userInfo);
-      $store.dispatch('user/logInUser');
+      $store.dispatch('user/logInUser').then(() => {
+        if ($store.state.user.role == 'psychologist') {
+          $router.push('/psychologist/console');
+        }
+      });
     };
 
     return {

@@ -1,3 +1,4 @@
+import { route } from 'quasar/wrappers';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
@@ -10,7 +11,10 @@ const routes: RouteRecordRaw[] = [
     path: '/auth',
     component: () => import('src/layouts/RedirectLayout.vue'),
     children: [
-      { path: '/auth/login', component: () => import('pages/LoginPage.vue') },
+      {
+        path: '/auth/login',
+        component: () => import('pages/LoginPage.vue'),
+      },
       { path: '/auth/signUp', component: () => import('pages/SignUpPage.vue') },
       { path: '/posts', component: () => import('pages/PostPage.vue') },
       {
@@ -25,6 +29,13 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/psychologist/console',
+        beforeEnter: (to, from, next) => {
+          if (localStorage.getItem('token')) {
+            next();
+          } else {
+            next('/auth/login');
+          }
+        },
         component: () => import('pages/PsychologistConsolePage.vue'),
       },
     ],

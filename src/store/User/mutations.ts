@@ -1,5 +1,6 @@
 import { MutationTree } from 'vuex';
 import { UserStateInterface } from './state';
+import { setLocalToken, removeLocalToken } from 'src/store/utils';
 
 const mutation: MutationTree<UserStateInterface> = {
   fillUser(state: UserStateInterface, data) {
@@ -10,16 +11,26 @@ const mutation: MutationTree<UserStateInterface> = {
   },
   setAuth(state: UserStateInterface, data) {
     state.token = data;
-    const token = state.token;
-    if (token != '') {
+    const token = JSON.stringify(state.token);
+    if (state.token) {
       state.authenticated = true;
     }
 
-    const payload = JSON.parse(atob(JSON.stringify(token).split('.')[1]));
+    setLocalToken(JSON.parse(token).token);
+    const payload = JSON.parse(atob(token.split('.')[1]));
 
     state.role = payload.role;
 
     console.log(state);
+  },
+
+  unsetAuth(state: UserStateInterface) {
+    state.userLogin = { email: '', password: '' };
+    state.userRegister = { id: '', name: '', email: '', password: '' };
+    (state.authenticated = false),
+      (state.role = ''),
+      (state.token = ''),
+      removeLocalToken();
   },
 };
 

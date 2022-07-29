@@ -2,8 +2,16 @@
   <q-layout view="hHh Lpr fFf">
     <q-header elevated class="bg-teal">
       <q-toolbar>
-        <q-icon name="psychologist" />
+        <q-icon name="psychology" size="sm" />
         <q-toolbar-title> Psicologar </q-toolbar-title>
+        <q-btn
+          color="white"
+          text-color="secondary"
+          class="text-capitalize"
+          icon="logout"
+          @click="logOut()"
+          label="Sair"
+        />
       </q-toolbar>
 
       <q-toolbar inset>
@@ -20,13 +28,22 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Breadcrumb from 'components/Global/Breadcrumb.vue';
+import { useStore } from 'src/store';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'PsychologistLayout',
   components: { Breadcrumb },
   setup() {
-    const leftDrawer = ref(false);
-    return { leftDrawer };
+    const $store = useStore();
+    const $router = useRouter();
+
+    const logOut = () => {
+      $store.dispatch('user/logOutUser').then(() => {
+        $router.push('/');
+      });
+    };
+    return { logOut };
   },
 });
 </script>
