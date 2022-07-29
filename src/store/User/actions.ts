@@ -36,6 +36,29 @@ const actions: ActionTree<UserStateInterface, StateInterface> = {
     });
   },
 
+  refreshUser(context) {
+    return new Promise((resolve, reject) => {
+      api
+        .post('/api/login', context.state.userLogin)
+        .then((response) => {
+          context.commit('setAuth', response.data);
+          resolve(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          Notify.create({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'priority_high',
+            message: 'Sua sessão expirou!',
+            position: 'top-right',
+            timeout: 3000,
+          });
+          reject(error);
+        });
+    });
+  },
+
   logOutUser(context) {
     context.commit('unsetAuth');
     Notify.create({
