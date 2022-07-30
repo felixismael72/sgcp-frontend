@@ -1,6 +1,6 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
-import { Notify } from 'quasar';
+import { getLocalToken } from 'src/store/utils';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
@@ -27,6 +27,7 @@ export default boot(({ router, store, app }) => {
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
   setInterval(() => {
+    const token = getLocalToken();
     if (store.getters['user/isAuthenticated']) {
       store
         .dispatch('user/refreshUser')
@@ -35,9 +36,12 @@ export default boot(({ router, store, app }) => {
         })
         .catch(() => {
           router.push('/');
+          store.commit('user/unsetAuth');
         });
+    } else if (token) {
+      store.commit('user/setAuth', token);
     }
-  }, 6000);
+  }, 5000);
 });
 
 export { api };

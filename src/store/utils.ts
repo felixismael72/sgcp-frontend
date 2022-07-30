@@ -1,5 +1,7 @@
+import { AxiosRequestConfig } from 'axios';
+
 export const setLocalToken = (token: string) => {
-  localStorage.setItem('token', `Bearer ${token}`);
+  localStorage.setItem('token', token);
 };
 
 export const removeLocalToken = () => {
@@ -7,9 +9,11 @@ export const removeLocalToken = () => {
 };
 
 export const getLocalToken = () => {
-  localStorage.getItem('token');
+  return localStorage.getItem('token');
 };
 
 export const getAuthorizationHeader = (token: string) => {
-  return { Headers: { Authorization: `Bearer ${token}` } };
+  return {
+    headers: { Authorization: `Bearer ${token}` },
+  } as AxiosRequestConfig;
 };

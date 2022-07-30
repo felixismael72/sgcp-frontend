@@ -1,27 +1,25 @@
 <template>
   <q-page padding>
-    <SinglePost class="q-pa-md" />
+    <EditableCollection />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SinglePost from 'components/Post/SinglePost.vue';
+import EditableCollection from 'components/Post/EditableCollection.vue';
 import { useStore } from 'src/store';
 export default defineComponent({
-  name: 'SinglePostPage',
-  components: { SinglePost },
+  name: 'PostManagementPage',
+  components: { EditableCollection },
   setup() {
     const $store = useStore();
 
     const pathData = {
-      paths: ['Início', 'Publicações', 'Publicação'],
-      icons: ['home', 'library_books', 'feed'],
+      paths: ['Início', 'Entrar', 'Console', 'Publicações'],
+      icons: ['home', 'login', 'supervisor_account', 'library_books'],
     };
 
     $store.commit('path/setPath', pathData);
-
-    $store.dispatch('post/fetchPosts');
   },
 });
 </script>

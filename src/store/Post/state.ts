@@ -10,12 +10,14 @@ type Post = {
 export interface PostStateInterface {
   posts: Post[];
   openedPost: Post;
+  createdID: string;
 }
 
 function state(): PostStateInterface {
   return {
     posts: [],
     openedPost: {} as Post,
+    createdID: '',
   };
 }
 

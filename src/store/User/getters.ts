@@ -6,6 +6,9 @@ const getters: GetterTree<UserStateInterface, StateInterface> = {
   isAuthenticated(state) {
     return state.authenticated;
   },
+  getToken(state) {
+    return state.token;
+  },
 };
 
 export default getters;

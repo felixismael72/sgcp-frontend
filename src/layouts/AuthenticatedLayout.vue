@@ -26,13 +26,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import Breadcrumb from 'components/Global/Breadcrumb.vue';
 import { useStore } from 'src/store';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
-  name: 'PsychologistLayout',
+  name: 'AuthenticatedLayout',
   components: { Breadcrumb },
   setup() {
     const $store = useStore();

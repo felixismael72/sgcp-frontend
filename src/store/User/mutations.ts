@@ -11,17 +11,14 @@ const mutation: MutationTree<UserStateInterface> = {
   },
   setAuth(state: UserStateInterface, data) {
     state.token = data;
-    const token = JSON.stringify(state.token);
-    if (state.token) {
-      state.authenticated = true;
-    }
+    const token = state.token;
+    state.authenticated = true;
 
-    setLocalToken(JSON.parse(token).token);
+    setLocalToken(token);
     const payload = JSON.parse(atob(token.split('.')[1]));
 
     state.role = payload.role;
   },
-
   unsetAuth(state: UserStateInterface) {
     state.userLogin = { email: '', password: '' };
     state.userRegister = { id: '', name: '', email: '', password: '' };

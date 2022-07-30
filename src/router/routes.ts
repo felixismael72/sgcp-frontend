@@ -1,4 +1,3 @@
-import { route } from 'quasar/wrappers';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
@@ -24,8 +23,8 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/psychologist',
-    component: () => import('src/layouts/PsychologistLayout.vue'),
+    path: '/authenticated',
+    component: () => import('src/layouts/AuthenticatedLayout.vue'),
     children: [
       {
         path: '/psychologist/console',
@@ -37,6 +36,28 @@ const routes: RouteRecordRaw[] = [
           }
         },
         component: () => import('pages/PsychologistConsolePage.vue'),
+      },
+      {
+        path: '/psychologist/console/posts',
+        beforeEnter: (to, from, next) => {
+          if (localStorage.getItem('token')) {
+            next();
+          } else {
+            next('/auth/login');
+          }
+        },
+        component: () => import('pages/PostManagementPage.vue'),
+      },
+      {
+        path: '/patient/console',
+        beforeEnter: (to, from, next) => {
+          if (localStorage.getItem('token')) {
+            next();
+          } else {
+            next('/auth/login');
+          }
+        },
+        component: () => import('pages/PatientConsolePage.vue'),
       },
     ],
   },

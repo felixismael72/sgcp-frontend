@@ -71,6 +71,8 @@ export default defineComponent({
       $store.dispatch('user/logInUser').then(() => {
         if ($store.state.user.role == 'psychologist') {
           $router.push('/psychologist/console');
+        } else {
+          $router.push('/patient/console');
         }
       });
     };
