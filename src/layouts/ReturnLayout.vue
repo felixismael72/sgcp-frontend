@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import Breadcrumb from 'components/Global/Breadcrumb.vue';
 import { useRouter } from 'vue-router';
 

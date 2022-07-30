@@ -101,8 +101,6 @@ export default defineComponent({
       return date.formatDate(post.created_at.toString(), 'DD/MM/YYYY HH:mm');
     });
 
-    console.log(fmtDates);
-
     const handlePostEdit = (postID: string) => {
       openPost(postID);
       isEditPostOpen.value = !isEditPostOpen.value;
