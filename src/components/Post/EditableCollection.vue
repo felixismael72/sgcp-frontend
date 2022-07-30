@@ -13,11 +13,13 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular">{{
-            post.title
-          }}</q-item-label>
-          <q-item-label caption>{{ post.author }}</q-item-label>
-          <q-item-label caption>{{ post.created_at }}</q-item-label>
+          <q-item-label class="text-h6 text-weight-regular"
+            >Título: {{ post.title }}</q-item-label
+          >
+          <q-item-label caption>Autor: {{ post.author }}</q-item-label>
+          <q-item-label caption
+            >Data de criação:{{ fmtDates[index] }}</q-item-label
+          >
         </q-item-section>
 
         <q-item-section>
@@ -72,6 +74,7 @@ import { defineComponent, computed, ref } from 'vue';
 import { useStore } from 'src/store';
 import EditDialog from 'components/Post/EditDialog.vue';
 import RemoveDialog from 'components/Global/RemoveDialog.vue';
+import { date } from 'quasar';
 export default defineComponent({
   name: 'CollectionComponent',
   components: { EditDialog, RemoveDialog },
@@ -94,6 +97,12 @@ export default defineComponent({
     const isEditPostOpen = ref(false);
     const isRemovePostOpen = ref(false);
 
+    const fmtDates = posts.value.map((post) => {
+      return date.formatDate(post.created_at.toString(), 'DD/MM/YYYY HH:mm');
+    });
+
+    console.log(fmtDates);
+
     const handlePostEdit = (postID: string) => {
       openPost(postID);
       isEditPostOpen.value = !isEditPostOpen.value;
@@ -107,6 +116,7 @@ export default defineComponent({
     return {
       posts,
       openPost,
+      fmtDates,
       isEditPostOpen,
       handlePostEdit,
       isRemovePostOpen,

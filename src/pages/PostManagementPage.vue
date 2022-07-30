@@ -15,8 +15,8 @@ export default defineComponent({
     const $store = useStore();
 
     const pathData = {
-      paths: ['Início', 'Entrar', 'Console', 'Publicações'],
-      icons: ['home', 'login', 'supervisor_account', 'library_books'],
+      paths: ['Início', 'Entrar', 'Publicações'],
+      icons: ['home', 'login', 'library_books'],
     };
 
     $store.commit('path/setPath', pathData);

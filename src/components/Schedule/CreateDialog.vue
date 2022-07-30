@@ -30,7 +30,7 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-date v-model="schedule" mask="YYYY-MM-DD HH:mm">
+                      <q-date v-model="schedule" mask="DD/MM/YYYY HH:mm">
                         <div class="row items-center justify-end">
                           <q-btn
                             v-close-popup
@@ -53,7 +53,7 @@
                     >
                       <q-time
                         v-model="schedule"
-                        mask="YYYY-MM-DD HH:mm"
+                        mask="DD/MM/YYYY HH:mm"
                         format24h
                       >
                         <div class="row items-center justify-end">

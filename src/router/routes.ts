@@ -38,6 +38,23 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/PsychologistConsolePage.vue'),
       },
       {
+        path: '/patient/console',
+        beforeEnter: (to, from, next) => {
+          if (localStorage.getItem('token')) {
+            next();
+          } else {
+            next('/auth/login');
+          }
+        },
+        component: () => import('pages/PatientConsolePage.vue'),
+      },
+    ],
+  },
+  {
+    path: '/console',
+    component: () => import('src/layouts/ReturnLayout.vue'),
+    children: [
+      {
         path: '/psychologist/console/posts',
         beforeEnter: (to, from, next) => {
           if (localStorage.getItem('token')) {
@@ -58,17 +75,6 @@ const routes: RouteRecordRaw[] = [
           }
         },
         component: () => import('pages/ScheduleManagementPage.vue'),
-      },
-      {
-        path: '/patient/console',
-        beforeEnter: (to, from, next) => {
-          if (localStorage.getItem('token')) {
-            next();
-          } else {
-            next('/auth/login');
-          }
-        },
-        component: () => import('pages/PatientConsolePage.vue'),
       },
     ],
   },

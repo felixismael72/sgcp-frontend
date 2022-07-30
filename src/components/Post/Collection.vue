@@ -19,11 +19,13 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label class="text-h6 text-weight-regular">{{
-            post.title
-          }}</q-item-label>
-          <q-item-label caption>{{ post.author }}</q-item-label>
-          <q-item-label caption>{{ post.created_at }}</q-item-label>
+          <q-item-label class="text-h6 text-weight-regular"
+            >Título: {{ post.title }}</q-item-label
+          >
+          <q-item-label caption>Autor: {{ post.author }}</q-item-label>
+          <q-item-label caption
+            >Data de criação: {{ fmtDates[index] }}</q-item-label
+          >
         </q-item-section>
 
         <q-item-section>
@@ -45,6 +47,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'src/store';
+import { date } from 'quasar';
 export default defineComponent({
   name: 'CollectionComponent',
   setup() {
@@ -57,12 +60,17 @@ export default defineComponent({
       },
     });
 
+    const fmtDates = posts.value.map((post) => {
+      return date.formatDate(post.created_at.toString(), 'DD/MM/YYYY HH:mm');
+    });
+
     const openPost = (postID: string) => {
       $store.dispatch('post/fetchPostByID', postID);
     };
 
     return {
       posts,
+      fmtDates,
       openPost,
     };
   },
