@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { useStore } from 'src/store';
 import { computed } from 'vue';
 export default {

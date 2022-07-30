@@ -3,14 +3,12 @@
     <q-list bordered separator>
       <q-item v-for="(post, index) in posts" :key="post._id">
         <q-item-section avatar>
-          <q-btn
+          <q-avatar
             icon="feed"
             round
             :color="index % 2 == 0 ? 'secondary' : 'white'"
             :text-color="index % 2 == 0 ? 'white' : 'secondary'"
             class="shadow-3"
-            @click="openPost(post._id)"
-            to="posts/openedPost"
           />
         </q-item-section>
 
@@ -51,7 +49,7 @@
       </q-item>
     </q-list>
   </div>
-  <div class="q-pa-md" v-if="posts <= 0">
+  <div class="q-pa-md" v-if="posts.length <= 0">
     <q-banner class="bg-warning text-white">
       Não há publicações ainda. Cadastre alguma para gerenciá-la!
       <template v-slot:action>

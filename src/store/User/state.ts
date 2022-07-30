@@ -1,5 +1,4 @@
 type UserRegistration = {
-  id: string;
   name: string;
   email: string;
   password: string;
@@ -15,6 +14,7 @@ export interface UserStateInterface {
   userLogin: UserLogin;
   token: string;
   role: string;
+  id: string;
   authenticated: boolean;
 }
 
@@ -24,6 +24,7 @@ function state(): UserStateInterface {
     userLogin: {} as UserLogin,
     token: '',
     role: '',
+    id: '',
     authenticated: false,
   };
 }

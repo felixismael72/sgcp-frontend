@@ -18,10 +18,11 @@ const mutation: MutationTree<UserStateInterface> = {
     const payload = JSON.parse(atob(token.split('.')[1]));
 
     state.role = payload.role;
+    state.id = payload.id;
   },
   unsetAuth(state: UserStateInterface) {
     state.userLogin = { email: '', password: '' };
-    state.userRegister = { id: '', name: '', email: '', password: '' };
+    state.userRegister = { name: '', email: '', password: '' };
     (state.authenticated = false),
       (state.role = ''),
       (state.token = ''),

@@ -3,24 +3,17 @@ import { api } from 'src/boot/axios';
 import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
 import { getAuthorizationHeader } from '../utils';
-import { PostStateInterface } from './state';
+import { ScheduleStateInterface } from './state';
 
-const actions: ActionTree<PostStateInterface, StateInterface> = {
-  fetchPosts(context) {
+const actions: ActionTree<ScheduleStateInterface, StateInterface> = {
+  fetchSchedules(context) {
+    const token = context.rootGetters['user/getToken'];
+    const headers = getAuthorizationHeader(token);
+
     api
-      .get('/api/post')
+      .get('/api/schedule', headers)
       .then((response) => {
-        context.commit('fillPosts', response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-  fetchPostByID(context, id: string) {
-    api
-      .get(`/api/post/${id}`)
-      .then((response) => {
-        context.commit('fillOpenedPost', response.data);
+        context.commit('fillSchedules', response.data);
       })
       .catch(() => {
         Notify.create({
@@ -33,19 +26,39 @@ const actions: ActionTree<PostStateInterface, StateInterface> = {
         });
       });
   },
-  createPost(context, postBody) {
+  fetchScheduleByID(context, scheduleID) {
     const token = context.rootGetters['user/getToken'];
     const headers = getAuthorizationHeader(token);
 
     api
-      .post('/api/post/new', postBody, headers)
+      .get(`/api/schedule/${scheduleID}`, headers)
       .then((response) => {
-        context.commit('setPostID', response.data.id);
+        context.commit('fillOpenedSchedule', response.data);
+      })
+      .catch(() => {
+        Notify.create({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'priority_high',
+          message: 'Oops, parece que o serviço está indisponível!',
+          position: 'top-right',
+          timeout: 3000,
+        });
+      });
+  },
+  createSchedule(context, scheduleBody) {
+    const token = context.rootGetters['user/getToken'];
+    const headers = getAuthorizationHeader(token);
+
+    api
+      .post('/api/schedule/new', scheduleBody, headers)
+      .then((response) => {
+        context.commit('setScheduleID', response.data.id);
         Notify.create({
           color: 'green-5',
           textColor: 'white',
           icon: 'check',
-          message: 'Publicação criada com sucesso!',
+          message: 'Horário registrado com sucesso!',
           position: 'top-right',
           timeout: 3000,
         });
@@ -72,21 +85,21 @@ const actions: ActionTree<PostStateInterface, StateInterface> = {
         }
       });
   },
-  updatePost(context, postBody) {
-    const id = context.state.openedPost._id;
+  editSchedule(context, scheduleBody) {
+    const id = context.state.openedSchedule.id;
 
-    const token = context.rootState.user.token;
+    const token = context.rootGetters['user/getToken'];
     const headers = getAuthorizationHeader(token);
 
     api
-      .put(`/api/post/${id}/edit`, postBody, headers)
+      .put(`/api/schedule/${id}/edit`, scheduleBody, headers)
       .then(() => {
-        context.dispatch('fetchPosts');
+        context.dispatch('fetchSchedules');
         Notify.create({
           color: 'green-5',
           textColor: 'white',
           icon: 'check',
-          message: 'Publicação atualizada com sucesso!',
+          message: 'Horário atualizado com sucesso!',
           position: 'top-right',
           timeout: 3000,
         });
@@ -113,21 +126,21 @@ const actions: ActionTree<PostStateInterface, StateInterface> = {
         }
       });
   },
-  removePost(context) {
-    const id = context.state.openedPost._id;
+  removeSchedule(context) {
+    const id = context.state.openedSchedule.id;
 
     const token = context.rootState.user.token;
     const headers = getAuthorizationHeader(token);
 
     api
-      .delete(`/api/post/${id}/remove`, headers)
+      .delete(`/api/schedule/${id}/remove`, headers)
       .then(() => {
-        context.dispatch('fetchPosts');
+        context.dispatch('fetchSchedules');
         Notify.create({
           color: 'green-5',
           textColor: 'white',
           icon: 'check',
-          message: 'Publicação removida com sucesso!',
+          message: 'Horário removido com sucesso!',
           position: 'top-right',
           timeout: 3000,
         });

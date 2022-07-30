@@ -9,10 +9,12 @@ import {
 import post from './Post';
 import path from './Path';
 import user from './User';
+import schedule from './Schedule';
 
 import { PostStateInterface } from './Post/state';
 import { PathStateInterface } from './Path/state';
 import { UserStateInterface } from './User/state';
+import { ScheduleStateInterface } from './Schedule/state';
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
 
@@ -32,6 +34,7 @@ export interface StateInterface {
   post: PostStateInterface;
   path: PathStateInterface;
   user: UserStateInterface;
+  schedule: ScheduleStateInterface;
 }
 
 // provide typings for `this.$store`
@@ -51,6 +54,7 @@ export default store(function (/* { ssrContext } */) {
       post,
       path,
       user,
+      schedule,
     },
 
     // enable strict mode (adds overhead!)
