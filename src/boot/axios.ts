@@ -26,8 +26,12 @@ export default boot(({ router, store, app }) => {
   app.config.globalProperties.$api = api;
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
+  const token = getLocalToken();
+  if (token && !store.getters['user/isAuthenticated']) {
+    store.commit('user/setAuth', token);
+  }
+
   setInterval(() => {
-    const token = getLocalToken();
     if (store.getters['user/isAuthenticated']) {
       store
         .dispatch('user/refreshUser')
@@ -38,8 +42,6 @@ export default boot(({ router, store, app }) => {
           router.push('/');
           store.commit('user/unsetAuth');
         });
-    } else if (token) {
-      store.commit('user/setAuth', token);
     }
   }, 5000);
 });

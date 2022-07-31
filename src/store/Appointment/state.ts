@@ -1,10 +1,14 @@
-export interface ExampleStateInterface {
-  prop: boolean;
+export type Appointment = {
+  schedule_id: string;
+};
+
+export interface AppointmentStateInterface {
+  createdID: string;
 }
 
-function state(): ExampleStateInterface {
+function state(): AppointmentStateInterface {
   return {
-    prop: false,
+    createdID: '',
   };
 }
 

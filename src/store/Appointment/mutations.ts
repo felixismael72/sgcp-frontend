@@ -1,10 +1,10 @@
 import { MutationTree } from 'vuex';
-import { ExampleStateInterface } from './state';
+import { AppointmentStateInterface } from './state';
 
-const mutation: MutationTree<ExampleStateInterface> = {
-  someMutation (/* state: ExampleStateInterface */) {
-    // your code
-  }
+const mutation: MutationTree<AppointmentStateInterface> = {
+  setCreatedID(state: AppointmentStateInterface, data) {
+    state.createdID = data;
+  },
 };
 
 export default mutation;

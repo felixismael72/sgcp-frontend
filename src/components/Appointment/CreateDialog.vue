@@ -27,6 +27,8 @@
               :options="schedules"
               :dense="dense"
               :options-dense="denseOpts"
+              emit-value
+              map-options
             >
               <template v-slot:prepend>
                 <q-icon name="event" />
@@ -39,16 +41,8 @@
               color="secondary"
               class="text-capitalize"
               size="md"
-              label="Salvar"
+              label="Marcar"
               @click="$emit('closeDialog'), saveAppointment()"
-            />
-            <q-btn
-              outline
-              color="secondary"
-              class="text-capitalize"
-              size="md"
-              label="Limpar"
-              @click="clearPost()"
             />
           </q-card-actions>
         </q-card>
@@ -72,7 +66,9 @@ export default defineComponent({
     });
 
     const saveAppointment = () => {
-      return;
+      $store.dispatch('appointment/createAppointment', {
+        schedule_id: schedule.value,
+      });
     };
 
     const schedule = ref('');
