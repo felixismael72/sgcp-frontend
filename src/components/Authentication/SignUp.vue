@@ -49,7 +49,6 @@
           type="submit"
           color="secondary"
           style="min-width: 150px"
-          @click="save()"
         />
       </div>
     </q-form>
