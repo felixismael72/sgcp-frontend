@@ -15,11 +15,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/LoginPage.vue'),
       },
       { path: '/auth/signUp', component: () => import('pages/SignUpPage.vue') },
-      { path: '/posts', component: () => import('pages/PostPage.vue') },
-      {
-        path: '/posts/openedPost',
-        component: () => import('pages/SinglePostPage.vue'),
-      },
     ],
   },
   {
@@ -54,6 +49,11 @@ const routes: RouteRecordRaw[] = [
     path: '/console',
     component: () => import('src/layouts/ReturnLayout.vue'),
     children: [
+      { path: '/posts', component: () => import('pages/PostPage.vue') },
+      {
+        path: '/posts/openedPost',
+        component: () => import('pages/SinglePostPage.vue'),
+      },
       {
         path: '/psychologist/console/posts',
         beforeEnter: (to, from, next) => {
