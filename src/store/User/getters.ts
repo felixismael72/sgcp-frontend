@@ -9,6 +9,9 @@ const getters: GetterTree<UserStateInterface, StateInterface> = {
   getToken(state) {
     return state.token;
   },
+  getRole(state) {
+    return state.role;
+  },
 };
 
 export default getters;

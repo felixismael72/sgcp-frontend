@@ -25,8 +25,6 @@
               outlined
               v-model="schedule"
               :options="schedules"
-              :dense="dense"
-              :options-dense="denseOpts"
               emit-value
               map-options
             >

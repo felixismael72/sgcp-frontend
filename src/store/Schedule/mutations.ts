@@ -8,7 +8,7 @@ const mutation: MutationTree<ScheduleStateInterface> = {
       ...data.map((schedule: Schedule) => {
         return {
           id: schedule.id,
-          schedule: date.formatDate(schedule.schedule, 'DD/MM/YYYY HH:mm'),
+          schedule: schedule.schedule,
           psychologist_id: schedule.psychologist_id,
           expired: schedule.expired,
           available: schedule.available,
@@ -23,7 +23,7 @@ const mutation: MutationTree<ScheduleStateInterface> = {
       ...data.map((schedule: Schedule) => {
         return {
           value: schedule.id,
-          label: date.formatDate(schedule.schedule, 'DD/MM/YYYY HH:mm'),
+          label: schedule.schedule,
         };
       }),
     ];
@@ -32,10 +32,7 @@ const mutation: MutationTree<ScheduleStateInterface> = {
     state.createdID = createdID;
   },
   setSchedule(state: ScheduleStateInterface, schedule) {
-    state.openedSchedule.schedule = date.formatDate(
-      schedule,
-      'DD/MM/YYYY HH:mm'
-    );
+    state.openedSchedule.schedule = schedule;
   },
   setAvailability(state: ScheduleStateInterface, available) {
     state.openedSchedule.available = available;

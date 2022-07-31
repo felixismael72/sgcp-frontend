@@ -1,4 +1,5 @@
 <template>
+  <EditableCollection />
   <q-page-sticky position="bottom-right" :offset="[18, 18]">
     <q-btn
       fab
@@ -15,10 +16,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import CreateDialog from 'components/Appointment/CreateDialog.vue';
+import EditableCollection from 'components/Appointment/EditableCollection.vue';
 import { useStore } from 'src/store';
 export default defineComponent({
   name: 'ConsoleComponent',
-  components: { CreateDialog },
+  components: { CreateDialog, EditableCollection },
   setup() {
     const $store = useStore();
 

@@ -9,7 +9,7 @@ const actions: ActionTree<ScheduleStateInterface, StateInterface> = {
   fetchSchedules(context) {
     const token = context.rootGetters['user/getToken'];
     const headers = getAuthorizationHeader(token);
-    console.log(headers);
+
     api
       .get('/api/schedule', headers)
       .then((response) => {

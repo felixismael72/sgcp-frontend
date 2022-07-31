@@ -47,6 +47,43 @@ const actions: ActionTree<UserStateInterface, StateInterface> = {
     });
   },
 
+  signUp(context, userBody) {
+    api
+      .post('/api/register', userBody)
+      .then((response) => {
+        context.commit('setAuth', response.data.token);
+        Notify.create({
+          color: 'green-5',
+          textColor: 'white',
+          icon: 'check',
+          message: 'Usuário cadastrado com sucesso!',
+          position: 'top-right',
+          timeout: 3000,
+        });
+      })
+      .catch((error) => {
+        if (error.response) {
+          Notify.create({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'priority_high',
+            message: 'Verifique os dados preenchidos!',
+            position: 'top-right',
+            timeout: 3000,
+          });
+        } else {
+          Notify.create({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'priority_high',
+            message: 'Oops, algo deu errado! Tente novamente mais tarde.',
+            position: 'top-right',
+            timeout: 3000,
+          });
+        }
+      });
+  },
+
   refreshUser(context) {
     return new Promise((resolve, reject) => {
       const token = context.state.token;

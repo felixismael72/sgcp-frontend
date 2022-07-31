@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-md" style="max-width: 400px">
-    <q-form
-      @submit="logIn(email, password)"
-      @reset="onReset"
-      class="q-gutter-md"
-    >
+    <q-form @submit="logIn(email, password)" class="q-gutter-md">
       <q-input
         filled
         v-model="email"
@@ -38,13 +34,11 @@
         v-ripple
         class="relative-position container flex flex-center text-white"
       >
-        <q-btn label="Entrar" type="submit" color="secondary" />
         <q-btn
-          label="Limpar"
-          type="reset"
+          label="Entrar"
+          type="submit"
           color="secondary"
-          flat
-          class="q-ml-sm"
+          style="min-width: 150px"
         />
       </div>
     </q-form>

@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" style="max-width: 400px">
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+    <q-form @submit="save()" class="q-gutter-md">
       <q-input
         filled
         v-model="name"
@@ -40,36 +40,16 @@
         </template>
       </q-input>
 
-      <q-input
-        v-model="passwordConfirm"
-        filled
-        label="Confirmar Senha"
-        :type="isPwdConfirm ? 'password' : 'text'"
-        lazy-rules
-        :rules="[
-          (val) => (val && val.length > 0) || 'Este campo é obrigatório',
-        ]"
-      >
-        <template v-slot:append>
-          <q-icon
-            :name="isPwdConfirm ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwdConfirm = !isPwdConfirm"
-          />
-        </template>
-      </q-input>
-
       <div
         v-ripple
         class="relative-position container flex flex-center text-white"
       >
-        <q-btn label="Cadastrar" type="submit" color="secondary" />
         <q-btn
-          label="Limpar"
-          type="reset"
+          label="Cadastrar"
+          type="submit"
           color="secondary"
-          flat
-          class="q-ml-sm"
+          style="min-width: 150px"
+          @click="save()"
         />
       </div>
     </q-form>
@@ -77,17 +57,36 @@
 </template>
 
 <script lang="ts">
+import { useStore } from 'src/store';
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'SignUpComponent',
   setup() {
+    const $store = useStore();
+    const $router = useRouter();
+
+    const password = ref('');
+    const isPwd = ref(true);
+    const email = ref('');
+    const name = ref('');
+
+    const save = () => {
+      $store.dispatch('user/signUp', {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+      });
+
+      $router.push('/patient/console');
+    };
+
     return {
-      password: ref(''),
-      isPwd: ref(true),
-      email: ref(''),
-      name: ref(''),
-      passwordConfirm: ref(''),
-      isPwdConfirm: ref(true),
+      password,
+      isPwd,
+      email,
+      name,
+      save,
     };
   },
 });
