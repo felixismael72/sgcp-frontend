@@ -1,10 +1,10 @@
-type Post = {
+export type Post = {
   _id: string;
   title: string;
   body: string;
   author: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
 };
 
 export interface PostStateInterface {

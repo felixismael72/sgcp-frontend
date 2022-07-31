@@ -15,11 +15,16 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import CreateDialog from 'components/Appointment/CreateDialog.vue';
+import { useStore } from 'src/store';
 export default defineComponent({
   name: 'ConsoleComponent',
   components: { CreateDialog },
   setup() {
+    const $store = useStore();
+
     const isCreateOpen = ref(false);
+
+    $store.dispatch('schedule/fetchSchedules');
 
     const handleCreateDialog = () => {
       isCreateOpen.value = !isCreateOpen.value;

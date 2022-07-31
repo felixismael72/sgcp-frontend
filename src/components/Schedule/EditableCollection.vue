@@ -14,7 +14,7 @@
 
         <q-item-section>
           <q-item-label class="text-h6 text-weight-regular">{{
-            fmtSchedules[index]
+            schedule.schedule
           }}</q-item-label>
         </q-item-section>
 
@@ -68,7 +68,6 @@ import { useStore } from 'src/store';
 import { computed, defineComponent, ref } from 'vue';
 import RemoveDialog from 'components/Global/RemoveDialog.vue';
 import EditDialog from 'components/Schedule/EditDialog.vue';
-import { date } from 'quasar';
 export default defineComponent({
   name: 'CollectionComponent',
   components: { RemoveDialog, EditDialog },
@@ -90,10 +89,6 @@ export default defineComponent({
 
     const isEditScheduleOpen = ref(false);
     const isRemoveScheduleOpen = ref(false);
-
-    const fmtSchedules = schedules.value.map((schedule) => {
-      return date.formatDate(schedule.schedule.toString(), 'DD/MM/YYYY HH:mm');
-    });
 
     const handleScheduleEdit = (scheduleID: string) => {
       openSchedule(scheduleID);
@@ -119,7 +114,6 @@ export default defineComponent({
       isRemoveScheduleOpen,
       handleScheduleEdit,
       handleScheduleRemoval,
-      fmtSchedules,
       closeEdit,
       closeRemove,
     };

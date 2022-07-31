@@ -9,13 +9,15 @@ const actions: ActionTree<ScheduleStateInterface, StateInterface> = {
   fetchSchedules(context) {
     const token = context.rootGetters['user/getToken'];
     const headers = getAuthorizationHeader(token);
-
+    console.log(headers);
     api
       .get('/api/schedule', headers)
       .then((response) => {
         context.commit('fillSchedules', response.data);
+        context.commit('fillSelectable', response.data);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         Notify.create({
           color: 'red-5',
           textColor: 'white',

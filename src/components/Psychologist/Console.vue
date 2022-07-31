@@ -41,7 +41,9 @@
       </q-card-section>
 
       <q-card-actions align="center">
-        <q-btn flat color="teal">Gerenciar</q-btn>
+        <q-btn flat color="teal" to="/psychologist/console/appointments"
+          >Gerenciar</q-btn
+        >
       </q-card-actions>
     </q-card>
   </div>

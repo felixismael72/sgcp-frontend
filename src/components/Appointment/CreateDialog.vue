@@ -24,7 +24,7 @@
             <q-select
               outlined
               v-model="schedule"
-              :options="options"
+              :options="schedules"
               :dense="dense"
               :options-dense="denseOpts"
             >
@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import { useStore } from 'src/store';
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'CreateDialogComponent',
   props: ['dialogState'],
@@ -75,9 +75,20 @@ export default defineComponent({
       return;
     };
 
+    const schedule = ref('');
+
+    const schedules = computed({
+      get: () => $store.state.schedule.selectable,
+      set: () => {
+        return;
+      },
+    });
+
     return {
       open,
       saveAppointment,
+      schedules,
+      schedule,
     };
   },
 });

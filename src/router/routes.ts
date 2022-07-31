@@ -76,6 +76,17 @@ const routes: RouteRecordRaw[] = [
         },
         component: () => import('pages/ScheduleManagementPage.vue'),
       },
+      {
+        path: '/psychologist/console/appointments',
+        beforeEnter: (to, from, next) => {
+          if (localStorage.getItem('token')) {
+            next();
+          } else {
+            next('/auth/login');
+          }
+        },
+        component: () => import('pages/AppointmentManagementPage.vue'),
+      },
     ],
   },
 
