@@ -2,7 +2,7 @@
   "name": "sgcp-frontend",
   "version": "0.0.1",
   "description": "Projeto de Gestão de Consultas Psicológicas",
-  "productName": "Psicologar",
+  "productName": "SGCP",
   "author": "Ismael Felix <felixismael72@gmail.com>",
   "private": true,
   "scripts": {

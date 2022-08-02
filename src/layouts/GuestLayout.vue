@@ -3,7 +3,7 @@
     <q-header class="bg-teal">
       <q-toolbar>
         <q-icon name="psychology" size="sm" />
-        <q-toolbar-title> Psicologar </q-toolbar-title>
+        <q-toolbar-title> SGCP </q-toolbar-title>
         <q-tabs>
           <q-route-tab to="/auth/login">
             <q-btn
