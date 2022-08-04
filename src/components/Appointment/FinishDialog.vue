@@ -5,7 +5,7 @@
         <q-card-section class="row items-center">
           <q-avatar icon="delete" color="secondary" text-color="white" />
           <span class="q-ml-sm"
-            >Tem certeza que deseja cancelar esta consulta</span
+            >Tem certeza que deseja finalizar esta consulta</span
           >
         </q-card-section>
 
@@ -13,13 +13,13 @@
           <q-btn
             outline
             class="text-capitalize"
-            label="Fechar"
+            label="Cancelar"
             color="secondary"
             @click="$emit('closeDialog')"
           />
           <q-btn
             class="text-capitalize"
-            label="Cancelar"
+            label="Finalizar"
             color="secondary"
             @click="cancel(), $emit('closeDialog')"
           />
@@ -33,14 +33,14 @@
 import { useStore } from 'src/store';
 import { computed, defineComponent } from 'vue';
 export default defineComponent({
-  name: 'CancelDialogComponent',
+  name: 'FinishDialogComponent',
   props: ['dialogState', 'appointmentID'],
   emits: ['closeDialog'],
   setup(props) {
     const $store = useStore();
     let open = computed(() => props.dialogState);
     let cancel = () => {
-      $store.dispatch('appointment/cancelAppointment', props.appointmentID);
+      $store.dispatch('appointment/finishAppointment', props.appointmentID);
     };
     return {
       open,

@@ -9,12 +9,16 @@ export type Appointment = {
 
 export interface AppointmentStateInterface {
   appointments: Appointment[];
+  canceledAppointments: Appointment[];
+  finishedAppointments: Appointment[];
   createdID: string;
 }
 
 function state(): AppointmentStateInterface {
   return {
     appointments: [],
+    canceledAppointments: [],
+    finishedAppointments: [],
     createdID: '',
   };
 }
