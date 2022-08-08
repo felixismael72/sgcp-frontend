@@ -25,13 +25,25 @@
           <q-btn
             rounded
             :disable="appointment.is_canceled"
-            :icon="appointment.is_canceled ? 'priority_high' : 'cancel'"
-            color="red"
+            :icon="
+              appointment.is_canceled
+                ? 'priority_high'
+                : appointment.is_done
+                ? 'check'
+                : 'cancel'
+            "
+            :color="appointment.is_done ? 'green' : 'red'"
             outline
             size="md"
             style="max-width: 8rem"
             @click="handleCancelDialog()"
-            >{{ appointment.is_canceled ? 'Cancelada' : 'Cancelar' }}</q-btn
+            >{{
+              appointment.is_canceled
+                ? 'Cancelada'
+                : appointment.is_done
+                ? 'Realizada'
+                : 'Cancelar'
+            }}</q-btn
           >
         </q-item-section>
         <CancelDialog
